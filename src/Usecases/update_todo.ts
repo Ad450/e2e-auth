@@ -1,5 +1,8 @@
+import { NextFunction, Request, Response } from "express";
+import BaseUsecase from "../Core/base_usecase";
+import { TodoRepository } from "../Repository/todo_repository";
 
-class UpdateTodo extends BaseUsecase<IUpdateTodoParams> {
+export class UpdateTodo extends BaseUsecase {
     private todoRepository: TodoRepository;
 
     constructor(todoRepository: TodoRepository) {
@@ -7,10 +10,10 @@ class UpdateTodo extends BaseUsecase<IUpdateTodoParams> {
         this.todoRepository = todoRepository;
     }
 
-    async execute({ id, subTitle, title, isChecked }: IUpdateTodoParams): Promise<Todo | null> {
+    execute(req: Request, res: Response, next: NextFunction): void {
         try {
-            const results = await this.todoRepository.updateTodo(id, title, isChecked, subTitle);
-            return results;
+            this.todoRepository.updateTodo(req, res, next);
+
         } catch (error) {
             throw new ApiError("Method not implemented.");
 

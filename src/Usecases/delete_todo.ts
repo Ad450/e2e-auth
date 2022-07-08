@@ -1,4 +1,8 @@
-class DeleteTodo extends BaseUsecase<IDeleteTodoParams> {
+import { NextFunction, Request, Response } from "express";
+import BaseUsecase from "../Core/base_usecase";
+import { TodoRepository } from "../Repository/todo_repository";
+
+export class DeleteTodo extends BaseUsecase {
     private todoRepository: TodoRepository;
 
     constructor(todoRepository: TodoRepository) {
@@ -6,10 +10,10 @@ class DeleteTodo extends BaseUsecase<IDeleteTodoParams> {
         this.todoRepository = todoRepository;
     }
 
-    async execute(param: IDeleteTodoParams): Promise<Todo | null> {
+    execute(req: Request, res: Response, next: NextFunction): void {
         try {
-            const results = await this.todoRepository.deleteTodo();
-            return results;
+            this.todoRepository.deleteTodo(req, res, next);
+
         } catch (error) {
             // will do proper error handling
             throw new ApiError((error as string).toString());

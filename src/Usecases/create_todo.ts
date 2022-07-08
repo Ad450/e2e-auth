@@ -1,5 +1,8 @@
+import { NextFunction, Request, Response } from "express";
+import BaseUsecase from "../Core/base_usecase";
+import { TodoRepository } from "../Repository/todo_repository";
 
-class CreateTodo extends BaseUsecase<ICreateTodoParams> {
+export class CreateTodo extends BaseUsecase {
 
     private todoRepository: TodoRepository;
 
@@ -8,10 +11,9 @@ class CreateTodo extends BaseUsecase<ICreateTodoParams> {
         this.todoRepository = todoRepository;
     }
 
-    async execute({ id, isChecked, title, subTitle }: ICreateTodoParams): Promise<Todo | null> {
+    execute(req: Request, res: Response, next: NextFunction): void {
         try {
-            const result = await this.todoRepository.createTodo(id, title, isChecked, subTitle);
-            return result;
+            this.todoRepository.createTodo(req, res, next);
         } catch (error) {
             throw new ApiError("")
         }
