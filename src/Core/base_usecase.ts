@@ -1,4 +1,6 @@
-abstract class BaseUsecase<IBaseUsecaseParams> {
-    abstract execute(param: IBaseUsecaseParams): Promise<Todo | null>;
+import { NextFunction, Request, Response } from "express";
+
+export default abstract class BaseUsecase {
+    abstract execute(req: Request, res: Response, next: NextFunction): void;
 }
 
