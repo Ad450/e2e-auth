@@ -1,2 +1,3 @@
+import { IBaseUsecaseParams } from "./base_usecase_params";
 
-interface IDeleteTodoParams extends IBaseUsecaseParams { }
+export interface IDeleteTodoParams extends IBaseUsecaseParams { }

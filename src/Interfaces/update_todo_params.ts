@@ -1,6 +1,4 @@
-interface IUpdateTodoParams extends IBaseUsecaseParams {
-    title: string;
-    subTitle?: string;
-    id: number;
-    isChecked: boolean;
+import { IBaseUsecaseParams } from "./base_usecase_params";
+
+export interface IUpdateTodoParams extends IBaseUsecaseParams {
 }
