@@ -12,7 +12,7 @@ class UpdateTodo extends BaseUsecase<IUpdateTodoParams> {
             const results = await this.todoRepository.updateTodo(id, title, isChecked, subTitle);
             return results;
         } catch (error) {
-            throw new Error("Method not implemented.");
+            throw new ApiError("Method not implemented.");
 
         }
     }

@@ -12,7 +12,7 @@ class DeleteTodo extends BaseUsecase<IDeleteTodoParams> {
             return results;
         } catch (error) {
             // will do proper error handling
-            throw new Error("");
+            throw new ApiError((error as string).toString());
         }
     }
 }

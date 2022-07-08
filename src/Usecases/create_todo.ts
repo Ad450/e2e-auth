@@ -13,7 +13,7 @@ class CreateTodo extends BaseUsecase<ICreateTodoParams> {
             const result = await this.todoRepository.createTodo(id, title, isChecked, subTitle);
             return result;
         } catch (error) {
-            throw new Error("")
+            throw new ApiError("")
         }
     }
 
