@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import BaseUsecase from "../Core/base_usecase";
+import ApiError from "../Error_handler/error";
 import { TodoRepository } from "../Repository/todo_repository";
 
 export class DeleteTodo extends BaseUsecase {
@@ -13,7 +14,6 @@ export class DeleteTodo extends BaseUsecase {
     execute(req: Request, res: Response, next: NextFunction): void {
         try {
             this.todoRepository.deleteTodo(req, res, next);
-
         } catch (error) {
             // will do proper error handling
             throw new ApiError((error as string).toString());

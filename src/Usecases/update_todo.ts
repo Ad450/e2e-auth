@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import BaseUsecase from "../Core/base_usecase";
+import ApiError from "../Error_handler/error";
 import { TodoRepository } from "../Repository/todo_repository";
 
 export class UpdateTodo extends BaseUsecase {
@@ -13,7 +14,6 @@ export class UpdateTodo extends BaseUsecase {
     execute(req: Request, res: Response, next: NextFunction): void {
         try {
             this.todoRepository.updateTodo(req, res, next);
-
         } catch (error) {
             throw new ApiError("Method not implemented.");
 
