@@ -1,13 +1,10 @@
 
-import { validateRequest } from "../middlewares/validate_request";
 import { IEndpoints, methods } from "./endpoints_interface";
-import bodyParse from "body-parser";
 import { CreateTodo, } from "../Usecases/create_todo";
 import { UpdateTodo } from "../Usecases/update_todo";
 import { DeleteTodo } from "../Usecases/delete_todo";
 import TodoRespositoryImpl from "../Repository/todo_respository_impl";
-import { createTodoHandler } from "../middlewares/handle_response";
-import { NextFunction, Request, Response } from "express";
+
 
 
 // manually inject dependencies
@@ -23,16 +20,16 @@ export const routes: Array<IEndpoints> = [
     {
         route: createTodoRoute,
         method: methods.POST,
-        handler: createTodo.execute
+        handler: (req, res, next) => createTodo.execute(req, res, next)
     },
     {
         route: deleteTodoRoute,
         method: methods.POST,
-        handler: deleteTodo.execute
+        handler: (req, res, next) => deleteTodo.execute(req, res, next),
     },
     {
         route: updateTodoRoute,
         method: methods.POST,
-        handler: updateTodo.execute
+        handler: (req, res, next) => updateTodo.execute(req, res, next)
     }
 ]
