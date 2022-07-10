@@ -9,10 +9,11 @@ const create_todo_1 = require("../Usecases/create_todo");
 const update_todo_1 = require("../Usecases/update_todo");
 const delete_todo_1 = require("../Usecases/delete_todo");
 const todo_respository_impl_1 = __importDefault(require("../Repository/todo_respository_impl"));
+const endpoints_service_1 = __importDefault(require("../Services/endpoints_service"));
 // manually inject dependencies
-const createTodo = new create_todo_1.CreateTodo(new todo_respository_impl_1.default());
-const updateTodo = new update_todo_1.UpdateTodo(new todo_respository_impl_1.default());
-const deleteTodo = new delete_todo_1.DeleteTodo(new todo_respository_impl_1.default());
+const createTodo = new create_todo_1.CreateTodo(new todo_respository_impl_1.default(new endpoints_service_1.default()));
+const updateTodo = new update_todo_1.UpdateTodo(new todo_respository_impl_1.default(new endpoints_service_1.default()));
+const deleteTodo = new delete_todo_1.DeleteTodo(new todo_respository_impl_1.default(new endpoints_service_1.default()));
 const createTodoRoute = "/createTodo";
 const deleteTodoRoute = "/deleteTodo";
 const updateTodoRoute = "/updateTodo";

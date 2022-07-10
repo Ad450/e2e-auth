@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateTodoHandler = exports.createTodoHandler = void 0;
-const validate_request_1 = require("./validate_request");
-const generate_id_1 = require("./generate_id");
+const validate_request_1 = require("../Helpers/validate_request");
+const generate_id_1 = require("../Helpers/generate_id");
 // will do the actual creation of a todo model and putting into the database
 // to be used in the respository implementation
 const createTodoHandler = async (req, res, next) => {
