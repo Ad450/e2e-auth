@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import { routes } from "./Routers/endpoints";
 import TodoRespositoryImpl from "./Repository/todo_respository_impl";
 import { CreateTodo } from "./Usecases/create_todo";
+import mongooseSetup from "./Database/db_setup";
 
 
 dotenv.config();
@@ -22,8 +23,17 @@ app.post(routes[deleteTodoIndex].route, routes[deleteTodoIndex].handler);
 app.post(routes[updateTodoIndex].route, routes[updateTodoIndex].handler);
 
 
+const startApp = () => {
+    try {
+        app.listen(process.env.APP_PORT || 8080, () => {
+            console.log("server started, fire on");
+        });
+        mongooseSetup();
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
 
-app.listen(process.env.APP_PORT || 8080, () => {
-    console.log("so many things happening right now");
-    console.log(process.env.APP_PORT);
-});
+    }
+}
+
+startApp();
