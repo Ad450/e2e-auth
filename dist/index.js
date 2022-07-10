@@ -1,36 +1,23 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const dotenv = __importStar(require("dotenv"));
-dotenv.config();
+const dotenv_1 = __importDefault(require("dotenv"));
+const body_parser_1 = __importDefault(require("body-parser"));
+const endpoints_1 = require("./Routers/endpoints");
+dotenv_1.default.config();
 const app = (0, express_1.default)();
-app.post("./", (req, res, next) => );
-app.listen(process.env.APP_PORT || 3000, () => {
-    console.log("app started on port 3000, more fire");
+app.use(body_parser_1.default.json());
+// all routes and their corresponding implementations 
+const createTodoIndex = 0;
+const deleteTodoIndex = 1;
+const updateTodoIndex = 2;
+app.post(endpoints_1.routes[createTodoIndex].route, endpoints_1.routes[createTodoIndex].handler);
+app.post(endpoints_1.routes[deleteTodoIndex].route, endpoints_1.routes[deleteTodoIndex].handler);
+app.post(endpoints_1.routes[updateTodoIndex].route, endpoints_1.routes[updateTodoIndex].handler);
+app.listen(process.env.APP_PORT || 8080, () => {
+    console.log("so many things happening right now");
+    console.log(process.env.APP_PORT);
 });

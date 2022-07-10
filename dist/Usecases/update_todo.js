@@ -1,16 +1,23 @@
 "use strict";
-class UpdateTodo extends BaseUsecase {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UpdateTodo = void 0;
+const base_usecase_1 = __importDefault(require("../Core/base_usecase"));
+const error_1 = __importDefault(require("../Error_handler/error"));
+class UpdateTodo extends base_usecase_1.default {
     constructor(todoRepository) {
         super();
         this.todoRepository = todoRepository;
     }
-    async execute({ id, subTitle, title, isChecked }) {
+    execute(req, res, next) {
         try {
-            const results = await this.todoRepository.updateTodo(id, title, isChecked, subTitle);
-            return results;
+            this.todoRepository.updateTodo(req, res, next);
         }
         catch (error) {
-            throw new ApiError("Method not implemented.");
+            throw new error_1.default("Method not implemented.");
         }
     }
 }
+exports.UpdateTodo = UpdateTodo;

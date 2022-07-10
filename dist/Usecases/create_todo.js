@@ -1,16 +1,23 @@
 "use strict";
-class CreateTodo extends BaseUsecase {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CreateTodo = void 0;
+const base_usecase_1 = __importDefault(require("../Core/base_usecase"));
+const error_1 = __importDefault(require("../Error_handler/error"));
+class CreateTodo extends base_usecase_1.default {
     constructor(todoRepository) {
         super();
         this.todoRepository = todoRepository;
     }
-    async execute({ id, isChecked, title, subTitle }) {
+    execute(req, res, next) {
         try {
-            const result = await this.todoRepository.createTodo(id, title, isChecked, subTitle);
-            return result;
+            this.todoRepository.createTodo(req, res, next);
         }
         catch (error) {
-            throw new ApiError("");
+            throw new error_1.default("");
         }
     }
 }
+exports.CreateTodo = CreateTodo;
