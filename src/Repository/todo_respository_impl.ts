@@ -21,14 +21,14 @@ export default class TodoRespositoryImpl extends TodoRepository {
     }
     async updateTodo(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            await this.endpointsService.createTodoService(req, res, next);
+            await this.endpointsService.updateTodoService(req, res, next);
         } catch (error) {
             throw new Error((error as string).toString());
         }
     }
     async deleteTodo(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            await this.endpointsService.createTodoService(req, res, next);
+            await this.endpointsService.deleteTodoService(req, res, next);
         } catch (error) {
             throw new Error((error as string).toString());
         }
