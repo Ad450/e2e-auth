@@ -1,13 +1,10 @@
 import mongoose from "mongoose";
 
-// placed here for development purposes
-const mongooseUrl: string = "mongodb+srv://Emmanuel1999:Manu450666@cluster0.ynk8r7l.mongodb.net/test";
-
 const mongooseSetup = () => {
     try {
-        mongoose.connect(process.env.MONGODB || mongooseUrl);
+        mongoose.connect(process.env.MONGODB || "");
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
