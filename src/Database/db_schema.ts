@@ -12,6 +12,10 @@ const todoSchema = new mongoose.Schema({
     isChecked: {
         type: Boolean,
         reqiured: true
+    },
+    hash: {
+        type: String,
+        required: true,
     }
 })
 
