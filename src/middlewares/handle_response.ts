@@ -1,6 +1,5 @@
 import { validateRequest } from "./validate_request"
 import { Response, Request, NextFunction } from "express";
-import ITodoParams from "../Interfaces/todo_interface";
 import { generateId } from "./generate_id";
 
 // will do the actual creation of a todo model and putting into the database
@@ -18,12 +17,12 @@ export const createTodoHandler = (req: Request, res: Response, next: NextFunctio
     const hash: string | undefined = generateId(req.body.title, req.body.isChecked, true);
     //get req.body and put into database
 
-    // if (hash === null || hash === undefined) {
-    //     res.status(500).json({
-    //         "error": "unexpected error"
-    //     });
-    //     return;
-    // }
+    if (hash === null || hash === undefined) {
+        res.status(500).json({
+            "error": "unexpected error"
+        });
+        return;
+    }
 
     // debugging
     console.log(req.body);
