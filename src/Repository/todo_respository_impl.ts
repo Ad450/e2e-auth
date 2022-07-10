@@ -19,11 +19,19 @@ export default class TodoRespositoryImpl extends TodoRepository {
             throw new Error((error as string).toString());
         }
     }
-    updateTodo(req: Request, res: Response, next: NextFunction): Promise<void> {
-        throw new Error("Method not implemented.");
+    async updateTodo(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            await this.endpointsService.createTodoService(req, res, next);
+        } catch (error) {
+            throw new Error((error as string).toString());
+        }
     }
-    deleteTodo(req: Request, res: Response, next: NextFunction): Promise<void> {
-        throw new Error("Method not implemented.");
+    async deleteTodo(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            await this.endpointsService.createTodoService(req, res, next);
+        } catch (error) {
+            throw new Error((error as string).toString());
+        }
     }
 
 
