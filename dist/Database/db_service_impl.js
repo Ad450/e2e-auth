@@ -20,8 +20,7 @@ class DatabaseServiceImpl extends db_service_1.default {
     async update(data) {
         try {
             const { _isChecked, _subTitle, _title, _hash } = data;
-            const toBeUpdatedTodo = db_schema_1.Todo.findById({ hash: _hash });
-            toBeUpdatedTodo.update({ title: _title, subTitle: _subTitle, isChecked: _isChecked, hash: _hash });
+            await db_schema_1.Todo.updateOne({ hash: _hash, }, { title: _title, subTitle: _subTitle, isChecked: _isChecked, hash: _hash });
         }
         catch (error) {
             // will do proper error handling
@@ -31,7 +30,7 @@ class DatabaseServiceImpl extends db_service_1.default {
     async delete(data) {
         try {
             const { _hash } = data;
-            db_schema_1.Todo.remove({ hash: _hash });
+            await db_schema_1.Todo.remove({ hash: _hash });
         }
         catch (error) {
             console.log(error);

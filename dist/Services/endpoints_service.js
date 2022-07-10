@@ -19,6 +19,7 @@ class EndpointsService extends service_1.default {
             return;
         }
         //generate hash as id
+        //TODO: guard double creation on same data that will generate the same hash value
         const hash = (0, generate_id_1.generateId)(req.body.title, req.body.isChecked, true);
         if (hash === null || hash === undefined) {
             res.status(500).json({
@@ -57,7 +58,7 @@ class EndpointsService extends service_1.default {
         const todo = {
             title: req.body.title,
             subTitle: req.body.subTitle,
-            id: req.body.id,
+            hash: req.body.hash,
             isChecked: req.body.isChecked,
         };
         this.dbService.update({ _title: req.body.title, _subTitle: req.body.subTitle, _hash: req.body.hash, _isChecked: req.body.isChecked });

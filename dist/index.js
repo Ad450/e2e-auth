@@ -17,7 +17,7 @@ const deleteTodoIndex = 1;
 const updateTodoIndex = 2;
 app.post(endpoints_1.routes[createTodoIndex].route, endpoints_1.routes[createTodoIndex].handler);
 app.post(endpoints_1.routes[deleteTodoIndex].route, endpoints_1.routes[deleteTodoIndex].handler);
-app.post(endpoints_1.routes[updateTodoIndex].route, endpoints_1.routes[updateTodoIndex].handler);
+app.patch(endpoints_1.routes[updateTodoIndex].route, endpoints_1.routes[updateTodoIndex].handler);
 const startApp = () => {
     try {
         app.listen(process.env.APP_PORT || 8080, () => {
