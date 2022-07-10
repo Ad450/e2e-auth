@@ -4,13 +4,14 @@ import { CreateTodo, } from "../Usecases/create_todo";
 import { UpdateTodo } from "../Usecases/update_todo";
 import { DeleteTodo } from "../Usecases/delete_todo";
 import TodoRespositoryImpl from "../Repository/todo_respository_impl";
+import EndpointsService from "../Services/endpoints_service";
 
 
 
 // manually inject dependencies
-const createTodo = new CreateTodo(new TodoRespositoryImpl());
-const updateTodo = new UpdateTodo(new TodoRespositoryImpl());
-const deleteTodo = new DeleteTodo(new TodoRespositoryImpl());
+const createTodo = new CreateTodo(new TodoRespositoryImpl(new EndpointsService()));
+const updateTodo = new UpdateTodo(new TodoRespositoryImpl(new EndpointsService()));
+const deleteTodo = new DeleteTodo(new TodoRespositoryImpl(new EndpointsService()));
 
 const createTodoRoute: string = "/createTodo";
 const deleteTodoRoute: string = "/deleteTodo";
