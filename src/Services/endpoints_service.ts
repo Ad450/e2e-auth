@@ -21,6 +21,7 @@ export default class EndpointsService extends Service {
             return;
         }
         //generate hash as id
+        //TODO: guard double creation on same data that will generate the same hash value
         const hash: string | undefined = generateId(req.body.title, req.body.isChecked, true);
 
         if (hash === null || hash === undefined) {
@@ -62,7 +63,7 @@ export default class EndpointsService extends Service {
         const todo = {
             title: req.body.title,
             subTitle: req.body.subTitle,
-            id: req.body.id,
+            hash: req.body.hash,
             isChecked: req.body.isChecked,
         }
 

@@ -18,7 +18,7 @@ const updateTodoIndex: number = 2;
 
 app.post(routes[createTodoIndex].route, routes[createTodoIndex].handler);
 app.post(routes[deleteTodoIndex].route, routes[deleteTodoIndex].handler);
-app.post(routes[updateTodoIndex].route, routes[updateTodoIndex].handler);
+app.patch(routes[updateTodoIndex].route, routes[updateTodoIndex].handler);
 
 
 const startApp = () => {
