@@ -1,9 +1,7 @@
-import express, { NextFunction, Request, Response } from "express"
+import express from "express"
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import { routes } from "./Routers/endpoints";
-import TodoRespositoryImpl from "./Repository/todo_respository_impl";
-import { CreateTodo } from "./Usecases/create_todo";
 import mongooseSetup from "./Database/db_setup";
 
 
@@ -26,13 +24,12 @@ app.post(routes[updateTodoIndex].route, routes[updateTodoIndex].handler);
 const startApp = () => {
     try {
         app.listen(process.env.APP_PORT || 8080, () => {
-            console.log("server started, fire on");
+            console.info("server started, fire on 💥 🔥");
         });
         mongooseSetup();
     } catch (error) {
-        console.log(error);
+        console.error(error);
         process.exit(1);
-
     }
 }
 
