@@ -9,6 +9,12 @@ class DatabaseServiceImpl extends db_service_1.default {
     async create(data) {
         try {
             const { _title, _subTitle, _isChecked, _hash } = data;
+            // check if todo already exists
+            const retrieveTodo = db_schema_1.Todo.findOne({ hash: _hash });
+            // todo already exists
+            if (retrieveTodo !== null || retrieveTodo !== undefined) {
+                return;
+            }
             const newTodo = new db_schema_1.Todo({ title: _title, subTitle: _subTitle, isChecked: _isChecked, hash: _hash });
             await newTodo.save();
         }
@@ -30,7 +36,7 @@ class DatabaseServiceImpl extends db_service_1.default {
     async delete(data) {
         try {
             const { _hash } = data;
-            await db_schema_1.Todo.remove({ hash: _hash });
+            await db_schema_1.Todo.deleteOne({ hash: _hash });
         }
         catch (error) {
             console.log(error);
