@@ -1,3 +1,4 @@
+import ITodoParams from "../Interfaces/todo_interface";
 
 class Todo {
     id: number;
