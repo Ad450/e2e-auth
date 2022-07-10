@@ -1,20 +1,28 @@
 import { Request, Response, NextFunction } from "express";
+import EndpointsService from "../Services/endpoints_service";
 
 import { TodoRepository } from "./todo_repository";
-import { createTodoHandler } from "../middlewares/handle_response";
+
 
 export default class TodoRespositoryImpl extends TodoRepository {
-    createTodo(req: Request, res: Response, next: NextFunction): void {
+    endpointsService: EndpointsService;
+
+    constructor(endpointsService: EndpointsService) {
+        super();
+        this.endpointsService = endpointsService;
+    }
+
+    async createTodo(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            createTodoHandler(req, res, next);
+            await this.endpointsService.createTodoService(req, res, next);
         } catch (error) {
             throw new Error((error as string).toString());
         }
     }
-    updateTodo(req: Request, res: Response, next: NextFunction): void {
+    updateTodo(req: Request, res: Response, next: NextFunction): Promise<void> {
         throw new Error("Method not implemented.");
     }
-    deleteTodo(req: Request, res: Response, next: NextFunction): void {
+    deleteTodo(req: Request, res: Response, next: NextFunction): Promise<void> {
         throw new Error("Method not implemented.");
     }
 
