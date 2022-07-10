@@ -16,7 +16,7 @@ class TodoRespositoryImpl extends todo_repository_1.TodoRepository {
     }
     async updateTodo(req, res, next) {
         try {
-            await this.endpointsService.createTodoService(req, res, next);
+            await this.endpointsService.updateTodoService(req, res, next);
         }
         catch (error) {
             throw new Error(error.toString());
@@ -24,7 +24,7 @@ class TodoRespositoryImpl extends todo_repository_1.TodoRepository {
     }
     async deleteTodo(req, res, next) {
         try {
-            await this.endpointsService.createTodoService(req, res, next);
+            await this.endpointsService.deleteTodoService(req, res, next);
         }
         catch (error) {
             throw new Error(error.toString());

@@ -8,8 +8,8 @@ const db_schema_1 = require("./db_schema");
 class DatabaseServiceImpl extends db_service_1.default {
     async create(data) {
         try {
-            const { _title, _subTitle, _isChecked, _id } = data;
-            const newTodo = new db_schema_1.Todo({ title: _title, subTitle: _subTitle, isChecked: _isChecked, id: _id });
+            const { _title, _subTitle, _isChecked, _hash } = data;
+            const newTodo = new db_schema_1.Todo({ title: _title, subTitle: _subTitle, isChecked: _isChecked, hash: _hash });
             await newTodo.save();
         }
         catch (error) {
@@ -19,9 +19,9 @@ class DatabaseServiceImpl extends db_service_1.default {
     }
     async update(data) {
         try {
-            const { _isChecked, _subTitle, _title, _id } = data;
-            const toBeUpdatedTodo = db_schema_1.Todo.findById({ id: _id });
-            toBeUpdatedTodo.update({ title: _title, subTitle: _subTitle, isChecked: _isChecked, id: _id });
+            const { _isChecked, _subTitle, _title, _hash } = data;
+            const toBeUpdatedTodo = db_schema_1.Todo.findById({ hash: _hash });
+            toBeUpdatedTodo.update({ title: _title, subTitle: _subTitle, isChecked: _isChecked, hash: _hash });
         }
         catch (error) {
             // will do proper error handling
@@ -30,8 +30,8 @@ class DatabaseServiceImpl extends db_service_1.default {
     }
     async delete(data) {
         try {
-            const { _id } = data;
-            db_schema_1.Todo.remove({ _id });
+            const { _hash } = data;
+            db_schema_1.Todo.remove({ hash: _hash });
         }
         catch (error) {
             console.log(error);

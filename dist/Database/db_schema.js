@@ -17,6 +17,10 @@ const todoSchema = new mongoose_1.default.Schema({
     isChecked: {
         type: Boolean,
         reqiured: true
+    },
+    hash: {
+        type: String,
+        required: true,
     }
 });
 exports.Todo = mongoose_1.default.model("Todo", todoSchema);

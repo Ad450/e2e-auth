@@ -29,10 +29,10 @@ class EndpointsService extends service_1.default {
         const todo = {
             title: req.body.title,
             subTitle: req.body.subTitle,
-            id: (hash === null) ? "" : hash,
-            isChecked: false,
+            hash: (hash === null) ? "" : hash,
+            isChecked: req.body.isChecked,
         };
-        this.dbService.create({ _title: req.body.title, _subTitle: req.body.subTitle, _id: (hash === null) ? "" : hash, _isChecked: req.body.isChecked });
+        this.dbService.create({ _title: req.body.title, _subTitle: req.body.subTitle, _hash: (hash === null) ? "" : hash, _isChecked: req.body.isChecked });
         res.status(200).set("content-type", "application/json").json(todo);
     }
     async deleteTodoService(req, res, next) {
@@ -42,9 +42,12 @@ class EndpointsService extends service_1.default {
             });
             return;
         }
-        this.dbService.delete({ _title: req.body.title, _subTitle: req.body.subTitle, _id: req.body.id, _isChecked: req.body.isChecked });
+        this.dbService.delete({ _title: req.body.title, _subTitle: req.body.subTitle, _hash: req.body.hash, _isChecked: req.body.isChecked });
+        res.status(200).set("content-type", "application/json").json({
+            "message": "success"
+        });
     }
-    async UpdateTodoService(req, res, next) {
+    async updateTodoService(req, res, next) {
         if (!(0, validate_request_1.validateRequest)(req, res, next)) {
             res.status(401).json({
                 "error": "invalid data"
@@ -57,7 +60,7 @@ class EndpointsService extends service_1.default {
             id: req.body.id,
             isChecked: req.body.isChecked,
         };
-        this.dbService.update({ _title: req.body.title, _subTitle: req.body.subTitle, _id: req.body.id, _isChecked: req.body.isChecked });
+        this.dbService.update({ _title: req.body.title, _subTitle: req.body.subTitle, _hash: req.body.hash, _isChecked: req.body.isChecked });
         res.status(200).set("content-type", "application/json").json(todo);
     }
 }
