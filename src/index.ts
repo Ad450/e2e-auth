@@ -2,7 +2,6 @@ import express, { NextFunction, Request, Response } from "express"
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import { routes } from "./Routers/endpoints";
-import { createTodoHandler } from "./middlewares/handle_response";
 import TodoRespositoryImpl from "./Repository/todo_respository_impl";
 import { CreateTodo } from "./Usecases/create_todo";
 
