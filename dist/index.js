@@ -21,12 +21,12 @@ app.post(endpoints_1.routes[updateTodoIndex].route, endpoints_1.routes[updateTod
 const startApp = () => {
     try {
         app.listen(process.env.APP_PORT || 8080, () => {
-            console.log("server started, fire on");
+            console.info("server started, fire on 💥 🔥");
         });
         (0, db_setup_1.default)();
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
         process.exit(1);
     }
 };
